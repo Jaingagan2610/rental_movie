@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  name     String
+  mobile   String
+  email    String
+  password String
+  rents    Rent[]   // A user can have multiple rentals
+}
+
+model Movie {
+  id        Int      @id @default(autoincrement())
+  name      String
+  year      String
+  duration  String
+  image       String   // Assuming 'img' is a URL or a path to an image file
+  rating    String
+  rent      Rent?    // A movie can be associated with one rental (optional)
+}
+
+model Rent {
+  id       Int      @id @default(autoincrement())
+  price    String
+  time     DateTime
+  userId   Int      // A rental belongs to a user
+  movieId  Int?     @unique  // A rental can be associated with one movie (optional)
+
+  User     User     @relation(fields: [userId], references: [id])
+  Movie    Movie?   @relation(fields: [movieId], references: [id])
+}
