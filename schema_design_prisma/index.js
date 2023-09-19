@@ -9,32 +9,42 @@ app.use(cors())
 app.use(express.json());
 
 app.post('/Movie', async (req, res) => {
-    console.log(req.body)
+  console.log(req.body);
 
   try {
     const moviedata = req.body;
-    for (const item of moviedata) {
-      await prisma.movie.create({
-        data: {
-          name: item.name,
-          year: item.year,
-          duration :item.duration,
-          image: item.image,
-          rating :item.rating
-        }
-      });
-    }
 
+    // Assuming req.body is an array of movie objects
+    await prisma.movie.createMany({
+      data: moviedata.map(movie => ({
+        name: movie.name,
+        year: movie.year,
+        duration: movie.duration,
+        image: movie.image,
+        rating: movie.rating
+      }))
+    });
 
-
-    res.json("movie added");
+    res.json("Movies added");
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
   }
 });
 
-app.get('/MOvie', async(req, res) => {
+app.post('/addMovie',async (req,res)=>{
+  try{
+    await prisma.movie.create({
+      data:req.body
+    })
+    res.send("Movie Added")
+  }catch(err){
+    console.log(err)
+    res.status(400).json("error occured"+err)
+  }
+})
+
+app.get('/Movie', async(req, res) => {
   try{
     const users1 = await prisma.movie.findMany();
     res.json(users1);
