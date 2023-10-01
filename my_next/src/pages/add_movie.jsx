@@ -64,7 +64,7 @@ const YourComponent = () => {
   
 
     {isFormVisible && (
-     <form onSubmit={handleSubmit} className="bg-gradient-to-r from-red-600 via-purple-800 to-black-900 shadow-md rounded-lg p-6 w-full md:w-2/3 lg:w-1/2 mx-auto">
+     <form onSubmit={handleSubmit} className="bg-red-500 via-red-500 rounded-lg p-6 w-full md:w-2/3 lg:w-1/2 mx-auto">
         <h2 className="text-2xl font-semibold mb-4">Add a New Movie</h2>
         <div className="mb-4">
           <label htmlFor="image" className="block text-gray-700 font-bold mb-2">Image Link:</label>
@@ -123,7 +123,7 @@ const YourComponent = () => {
         </div>
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full"
+          className="bg-black hover:bg-gray-600 text-white py-2 px-4 rounded-full"
           disabled={isSubmitting}
         >
           Add Movie

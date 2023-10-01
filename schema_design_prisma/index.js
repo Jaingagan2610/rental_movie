@@ -54,4 +54,28 @@ app.get('/Movie', async(req, res) => {
   }
 }); 
 
+
+app.patch('/Movie/:id', async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const { name, year, duration,rating } = req.body;
+
+    const updatedmovie = await prisma.movie.update({
+      where: { id},
+      data: {
+        name,
+        year,
+        duration,
+        rating
+
+      }
+    });
+
+    res.json(updatedmovie);
+  } catch (error) {
+    console.error('Error updating movie:', error);
+    res.status(500).json({ error: 'Error updating user' });
+  }
+});
+
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

@@ -7,7 +7,7 @@ const Header = () => {
         <div className="logo mb-4 md:mb-0">
           <Link href="/">
             <img
-              src="https://logowik.com/content/uploads/images/imdb-internet-movie-database5351.jpg"
+              src="https://static.amazon.jobs/teams/53/images/IMDb_Header_Page.jpg?1501027252"
               alt="IMDb Logo"
               className="h-14"
             />
@@ -31,6 +31,7 @@ const Header = () => {
           </Link>
         </nav>
         <div className="flex items-center mt-4 md:mt-0">
+
           <div className="search-bar mr-2">
             <input
               type="text"
@@ -44,9 +45,9 @@ const Header = () => {
           <div className="user-actions ml-2">
             <Link href="/signin">
               <img
-                src="https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png"
+                src="https://w7.pngwing.com/pngs/713/762/png-transparent-computer-icons-button-login-image-file-formats-logo-monochrome.png"
                 alt="IMDb Logo"
-                className="h-8 md:h-12"
+                className="mt-4 h-8 md:h-12 rounded-full"
               />
             </Link>
           </div>
